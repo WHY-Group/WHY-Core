@@ -26,7 +26,7 @@ public class RedisValidateCodeManager {
 	 * @param time  消息过期时间(s)，若不设置，默认5分钟
 	 * @return
 	 * @return boolean
-	 * @author 胡斌
+	 * @author H
 	 * @date: 2020年4月23日
 	 */
 	public boolean isEmpty(String key, String value, Long time) {

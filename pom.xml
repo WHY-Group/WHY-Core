@@ -100,6 +100,13 @@
             <artifactId>mybatis-plus</artifactId>
             <version>${mybatis-plus.version}</version>
         </dependency>
+        <!-- 多数据源插件 -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+
         <!-- 校验框架 -->
         <dependency>
             <groupId>javax.validation</groupId>
@@ -135,19 +142,16 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- mongodb -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-mongodb</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
 
-
-        <!--        &lt;!&ndash;代码自动生成&ndash;&gt;-->
-        <!--        <dependency>-->
-        <!--            <groupId>com.baomidou</groupId>-->
-        <!--            <artifactId>mybatis-plus-generator</artifactId>-->
-        <!--            <version>3.0.3</version>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.apache.velocity</groupId>-->
-        <!--            <artifactId>velocity-engine-core</artifactId>-->
-        <!--            <version>2.3</version>-->
-        <!--        </dependency>-->
     </dependencies>
 
         <!-- 许可证信息 -->
@@ -163,7 +167,7 @@
                     <url>http://www.opensource.org/licenses/mit-license.php</url>
                 </license>-->
         </licenses>
-        <!-- SCM信息 -> git在github上托管 -->
+        <!-- SCM信息  git在github上托管 -->
         <scm>
             <connection>scm:git:git://github.com/WHY-Group/WHY-Core.git</connection>
             <developerConnection>scm:git:ssh://github.com/WHY-Group/WHY-Core.git</developerConnection>
@@ -178,7 +182,7 @@
             </developer>
             <developer>
                 <name>hubin</name>
-                <email>945040070@qq.com.com</email>
+                <email>945040070@qq.com</email>
                 <url>https://github.com/LakeIce</url>
             </developer>
         </developers>
@@ -212,7 +216,7 @@
                             </configuration>
                         </plugin>
 
-                        <!-- 要生成Javadoc和Source jar文件，您必须配置javadoc和源Maven插件 -->
+                        <!-- 要生成Javadoc和Source jar文件 -->
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-source-plugin</artifactId>
@@ -242,7 +246,7 @@
                                 </execution>
                             </executions>
                         </plugin>
-                        <!--  必须配置GPG插件用于使用以下配置对组件进行签名 -->
+                        <!--  配置GPG插件用于使用以下配置对组件进行签名 -->
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-gpg-plugin</artifactId>
@@ -259,7 +263,6 @@
                         </plugin>
                     </plugins>
                 </build>
-                <!-- 【注】snapshotRepository 与 repository 中的 id 一定要与 setting.xml 中 server 的 id 保持一致！ -->
                 <distributionManagement>
                     <snapshotRepository>
                         <id>whyCore</id>
@@ -272,29 +275,5 @@
                 </distributionManagement>
             </profile>
         </profiles>
-
-<!--    </project>-->
-
-
-    <!--    <build>-->
-<!--        <plugins>-->
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--                <configuration>-->
-<!--                    <fork>true</fork>-->
-<!--                    <includeSystemScope>true</includeSystemScope>-->
-<!--                </configuration>-->
-<!--                <version>2.2.4.RELEASE</version>-->
-<!--            </plugin>-->
-<!--        </plugins>-->
-<!--    </build>-->
-<!--    <build>-->
-<!--        <plugins>-->
-<!--            <plugin>-->
-<!--                <artifactId>maven-compiler-plugin</artifactId>-->
-<!--            </plugin>-->
-<!--        </plugins>-->
-<!--    </build>-->
 
 </project>

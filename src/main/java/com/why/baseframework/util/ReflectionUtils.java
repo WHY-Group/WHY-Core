@@ -80,55 +80,6 @@ public final class ReflectionUtils {
         return ReflectionUtils.getSetMethodMapping(targetMethods);
     }
 
-    /**
-     * 通过当前实体类的数据获取分页查询的queryWrapper
-     *
-     * @param entity 实体类的数据
-     * @return {@link QueryWrapper<T>}
-     * @author chenglin.wu
-     * @date: 2021/4/27
-     */
-    @Deprecated
-    public static <T extends BaseEntity> QueryWrapper<T> createPageWrapper(T entity) throws Exception {
-        DeclaredAndSuperClass declaredAndSuperClass = getDeclaredAndSuperClass(entity);
-        Class<?> aClass = declaredAndSuperClass.getDeclaredClass();
-        Class<?> superclass = declaredAndSuperClass.getSuperClass();
-        QueryWrapper<T> wrapper = new QueryWrapper<>();
-        List<Method> allGetter = getAllGetter(aClass);
-        // 遍历所有的getter方法
-        for (Method method : allGetter) {
-            String simpleName = method.getReturnType().getSimpleName();
-            String methodName = method.getName();
-            Object invoke = null;
-            //筛选字段params
-            if (DATA_TYPE_LIST.contains(simpleName)) {
-                // 获取当前类的属性
-                String fieldUpper = methodName.replace(ReflectConstants.GET_PREFIX, "");
-                String field = lowerCaseFirst(fieldUpper);
-                try {
-                    invoke = method.invoke(entity);
-                    if (null == invoke) {
-                        continue;
-                    }
-                    Field fieldType = aClass.getDeclaredField(field);
-                    field = getTableFieldAnnotationValue(field, fieldType);
-                    getWrapper(wrapper, simpleName, invoke, field);
-                } catch (IllegalAccessException | InvocationTargetException e) {
-                    log.error("invoke method error: ", e);
-                } catch (NoSuchFieldException e) {
-                    try {
-                        field = getTableFieldAnnotationValue(field, superclass.getDeclaredField(field));
-                        getWrapper(wrapper, simpleName, invoke, field);
-                    } catch (NoSuchFieldException noSuchFieldException) {
-                        log.error("super get field error: ", e);
-                    }
-                }
-            }
-        }
-//        getExtendField(entity, aClass, wrapper);
-        return wrapper;
-    }
-
 
     /**
      * 通过当前实体类的数据获取查询的queryWrapper
@@ -169,6 +120,64 @@ public final class ReflectionUtils {
 //            log.error("create extend field exception");
 //        }
         return wrapper;
+    }
+    /**
+     * 通过实体获取实体的父类Class对象和自己的Class文件对象
+     *
+     * @param entity 实体类
+     * @return DeclaredAndSuperClass
+     * @author chenglin.wu
+     * @date: 2021/5/17
+     */
+    private static <T> DeclaredAndSuperClass getDeclaredAndSuperClass(T entity) {
+        if (ObjectUtils.anyNull(entity)) {
+            throw new IllegalArgumentException("null");
+        }
+        return new DeclaredAndSuperClass(entity.getClass());
+    }
+
+    /**
+     * 判断此属性是否为忽略属性
+     *
+     * @param field 属性
+     * @return boolean false 为忽略字段 true 则不忽略
+     * @author chenglin.wu
+     * @date: 2021/5/17
+     */
+    private static boolean judgementIgnoreField(Field field) {
+        // 获取属性中所有的注解
+        TableField tableField = field.getAnnotation(TableField.class);
+        if (ObjectUtils.anyNull(tableField)) {
+            int modifiers = field.getModifiers();
+            // 如果为staic 或者final 修饰的字段则直接忽略
+            return !(Modifier.isFinal(modifiers) || Modifier.isStatic(modifiers));
+        }
+        return tableField.exist();
+    }
+
+    /**
+     * 构造wrapper
+     *
+     * @param entity  实体类
+     * @param field   属性
+     * @param method  get 方法
+     * @param wrapper new 出来的wrapper
+     * @return void
+     * @author chenglin.wu
+     * @date: 2021/5/17
+     */
+    private static <T extends BaseEntity> void getWrapper(T entity, Field field, Method method, QueryWrapper<T> wrapper) throws IllegalAccessException, InvocationTargetException {
+        Object invoke = method.invoke(entity);
+        if (ObjectUtils.anyNull(invoke)) {
+            return;
+        }
+        String columnName = getTableFieldAnnotationValue(field);
+        // 构造查询条件
+        if (ReflectConstants.STRING_SIMPLE_NAME.equals(field.getType().getSimpleName()) && ObjectUtils.isNotEmpty(invoke)) {
+            wrapper.like(columnName, invoke);
+        } else if (ObjectUtils.isNotEmpty(invoke)) {
+            wrapper.eq(columnName, invoke);
+        }
     }
 
 
@@ -233,25 +242,6 @@ public final class ReflectionUtils {
     /**
      * 获取属性对应的数据库列名
      *
-     * @param field     列名
-     * @param fieldType 属性
-     * @return String
-     * @author chenglin.wu
-     * @date: 2021/5/17
-     */
-    private static String getTableFieldAnnotationValue(String field, Field fieldType) {
-        TableField annotation = fieldType.getAnnotation(TableField.class);
-        if (ObjectUtils.allNotNull(annotation) && StringUtils.isNotBlank(annotation.value())) {
-            field = annotation.value();
-        } else {
-            field = getDbField(field);
-        }
-        return field;
-    }
-
-    /**
-     * 获取属性对应的数据库列名
-     *
      * @param field 属性
      * @return String
      * @author chenglin.wu
@@ -266,24 +256,7 @@ public final class ReflectionUtils {
         }
     }
 
-    /**
-     * 判断此属性是否为忽略属性
-     *
-     * @param field 属性
-     * @return boolean false 为忽略字段 true 则不忽略
-     * @author chenglin.wu
-     * @date: 2021/5/17
-     */
-    private static boolean judgementIgnoreField(Field field) {
-        // 获取属性中所有的注解
-        TableField tableField = field.getAnnotation(TableField.class);
-        if (ObjectUtils.anyNull(tableField)) {
-            int modifiers = field.getModifiers();
-            // 如果为staic 或者final 修饰的字段则直接忽略
-            return !(Modifier.isFinal(modifiers) || Modifier.isStatic(modifiers));
-        }
-        return tableField.exist();
-    }
+
 
     /**
      * 将字符串的首字母小写
@@ -341,30 +314,7 @@ public final class ReflectionUtils {
         }
     }
 
-    /**
-     * 构造wrapper
-     *
-     * @param entity  实体类
-     * @param field   属性
-     * @param method  get 方法
-     * @param wrapper new 出来的wrapper
-     * @return void
-     * @author chenglin.wu
-     * @date: 2021/5/17
-     */
-    private static <T extends BaseEntity> void getWrapper(T entity, Field field, Method method, QueryWrapper<T> wrapper) throws IllegalAccessException, InvocationTargetException {
-        Object invoke = method.invoke(entity);
-        if (ObjectUtils.anyNull(invoke)) {
-            return;
-        }
-        String columnName = getTableFieldAnnotationValue(field);
-        // 构造查询条件
-        if (ReflectConstants.STRING_SIMPLE_NAME.equals(field.getType().getSimpleName()) && ObjectUtils.isNotEmpty(invoke)) {
-            wrapper.like(columnName, invoke);
-        } else if (ObjectUtils.isNotEmpty(invoke)) {
-            wrapper.eq(columnName, invoke);
-        }
-    }
+
 
     /**
      * @param targetMethods 所有的方法数组
@@ -417,35 +367,8 @@ public final class ReflectionUtils {
         return (Class) params[index];
     }
 
-    /**
-     * 通过实体获取实体的父类Class对象和自己的Class文件对象
-     *
-     * @param entity 实体类
-     * @return DeclaredAndSuperClass
-     * @author chenglin.wu
-     * @date: 2021/5/17
-     */
-    private static <T> DeclaredAndSuperClass getDeclaredAndSuperClass(T entity) {
-        if (ObjectUtils.isEmpty(entity) || ObjectUtils.isEmpty(entity)) {
-            throw new IllegalArgumentException("null");
-        }
-        return new DeclaredAndSuperClass(entity.getClass());
-    }
 
-    /**
-     * 获取当前类或者父类的所有的getter方法
-     *
-     * @param clazz 当前entity的class对象
-     * @return List<Method>
-     * @author chenglin.wu
-     * @date: 2021/4/27
-     */
-    private static List<Method> getAllGetter(Class<?> clazz) {
-        Method[] methods = clazz.getMethods();
-        return Arrays.stream(methods)
-                .filter(method -> method.getName().startsWith(ReflectConstants.GET_PREFIX) && !method.getName().equals(ReflectConstants.GET_PARAMS))
-                .collect(Collectors.toList());
-    }
+
 
     /**
      * 获取数据库的字段名 转换成全大写
@@ -496,8 +419,8 @@ public final class ReflectionUtils {
          */
         private List<Field> getAllFields() {
             List<Field> fields = new ArrayList<>();
-            Field[] declaredFields = declaredClass.getDeclaredFields();
-            Field[] superFields = superClass.getDeclaredFields();
+            Field[] declaredFields = this.declaredClass.getDeclaredFields();
+            Field[] superFields = this.superClass.getDeclaredFields();
             fields.addAll(Arrays.asList(superFields));
             fields.addAll(Arrays.asList(declaredFields));
             return fields;
@@ -511,7 +434,7 @@ public final class ReflectionUtils {
          * @date: 2021/5/17
          */
         private List<Field> getDeclaredFields() {
-            Field[] declaredFields = declaredClass.getDeclaredFields();
+            Field[] declaredFields = this.declaredClass.getDeclaredFields();
             return new ArrayList<>(Arrays.asList(declaredFields));
         }
 
@@ -523,8 +446,46 @@ public final class ReflectionUtils {
          * @date: 2021/5/17
          */
         private List<Field> getSuperFields() {
-            Field[] declaredFields = superClass.getDeclaredFields();
+            Field[] declaredFields = this.superClass.getDeclaredFields();
             return new ArrayList<>(Arrays.asList(declaredFields));
+        }
+        /**
+         * 获取父类的所有的getter方法
+         *
+         * @return List<Method>
+         * @author chenglin.wu
+         * @date: 2021/4/27
+         */
+        private List<Method> getSuperAllGetter() {
+
+            return this.getAllGetter(this.superClass);
+        }
+
+        /**
+         * 获取父类的所有的getter方法
+         *
+         * @return List<Method>
+         * @author chenglin.wu
+         * @date: 2021/4/27
+         */
+        private List<Method> getAllGetter() {
+
+            return this.getAllGetter(this.declaredClass);
+        }
+
+        /**
+         * 获取当前类或者父类的所有的getter方法
+         *
+         * @param clazz 当前entity的class对象
+         * @return List<Method>
+         * @author chenglin.wu
+         * @date: 2021/4/27
+         */
+        private List<Method> getAllGetter(Class<?> clazz) {
+            Method[] methods = clazz.getDeclaredMethods();
+            return Arrays.stream(methods)
+                    .filter(method -> method.getName().startsWith(ReflectConstants.GET_PREFIX) && !method.getName().equals(ReflectConstants.GET_PARAMS))
+                    .collect(Collectors.toList());
         }
     }
 

@@ -1,5 +1,6 @@
 package com.why.baseframework.base.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.why.baseframework.base.entity.BaseEntity;
 import com.why.baseframework.constants.ReflectMethodPrefix;
 import com.why.baseframework.util.ReflectionUtils;
@@ -30,6 +31,7 @@ public abstract class BaseDTO<E extends BaseEntity> implements Serializable {
      * 对应entity的类型
      */
     @Transient
+    @JsonIgnore
     protected Class<E> entityClass;
 
     /**
