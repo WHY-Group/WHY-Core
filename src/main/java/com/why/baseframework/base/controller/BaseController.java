@@ -1,29 +1,20 @@
 package com.why.baseframework.base.controller;
 
-import com.why.baseframework.base.dto.DefaultOrderItem;
-import com.why.baseframework.base.dto.PageDto;
-import com.why.baseframework.base.dto.PageExtra;
 import com.why.baseframework.base.entity.BaseDocument;
 import com.why.baseframework.base.mapper.BaseMongoRepository;
 import com.why.baseframework.base.message.I18nMessage;
-import com.why.baseframework.base.service.BaseService;
+import com.why.baseframework.base.service.BaseMongoService;
 import com.why.baseframework.base.web.response.ResponseResult;
 import com.why.baseframework.base.web.response.ResponseUtils;
 import com.why.baseframework.dto.LoginUser;
-import com.why.baseframework.enums.ErrCodeEnum;
-import com.why.baseframework.page.PageSupport;
 import com.why.baseframework.redis.RedisLoginUserManager;
 import com.why.baseframework.util.TokenUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -36,7 +27,7 @@ import java.util.List;
  **/
 @Slf4j
 @SuppressWarnings("rawtypes")
-public class BaseController<S extends BaseService<M, T>, M extends BaseMongoRepository<T>, T extends BaseDocument> {
+public class BaseController<S extends BaseMongoService<M, T>, M extends BaseMongoRepository<T>, T extends BaseDocument> {
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
