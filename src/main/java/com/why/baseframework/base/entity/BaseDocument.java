@@ -1,15 +1,10 @@
 package com.why.baseframework.base.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.why.baseframework.base.dto.BaseDTO;
-import com.why.baseframework.base.web.jsonserial.CustomDateSerializer;
-import com.why.baseframework.base.web.jsonserial.CustomTimeSerializer;
-import com.why.baseframework.base.web.jsonserial.DateDeserializer;
+import com.why.baseframework.base.dto.BaseMongoDTO;
 import com.why.baseframework.util.ReflectionUtils;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.annotation.Transient;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
@@ -18,14 +13,13 @@ import java.util.*;
 /**
  * @Author chenglin.wu
  * @Description:
- * @Title: BaseEntity
+ * @Title: BaseDocument
  * @ProjectName base_framework
  * @Date 2021/4/16 10:20
  * @Company  WHY-Group
  */
 @Slf4j
-@Data
-public abstract class BaseEntity<D extends BaseDTO<?>> implements Serializable {
+public abstract class BaseDocument<D extends BaseMongoDTO<?>> implements Serializable {
     /**
      * 序列化version
      */
@@ -33,16 +27,19 @@ public abstract class BaseEntity<D extends BaseDTO<?>> implements Serializable {
     /**
      * 对应dto的类型
      */
-    @TableField(exist = false)
+    @Transient
     protected Class<D> dtoClass;
     /**
      * entity基类的构造函数，重点是设置entity对应dto的类型
      */
     @SuppressWarnings("unchecked")
-    public BaseEntity() {
+    public BaseDocument() {
         this.dtoClass = ReflectionUtils.getSuperClassGenericType(getClass());
     }
 
+    public abstract String getId();
+
+    public abstract void setId(String id);
     /**
      * 将Entity转换成DTO时只转换基本类型或其包装类，加String类型不转换复杂的类型,需要注意同名问题
      *
@@ -65,7 +62,7 @@ public abstract class BaseEntity<D extends BaseDTO<?>> implements Serializable {
                 try {
                     Object result = m.invoke(src);
                     // 浅拷贝，忽略非基本类型的属性
-                    if (result instanceof BaseEntity || result instanceof Set || result instanceof List
+                    if (result instanceof BaseDocument || result instanceof Set || result instanceof List
                             || result == null) {
                         continue;
                     }
@@ -120,8 +117,8 @@ public abstract class BaseEntity<D extends BaseDTO<?>> implements Serializable {
                             continue;
                         }
                         // 将dto属性拷贝为对应实体
-                        if (result instanceof BaseEntity) {
-                            Object myObject = ((BaseEntity) result).entity2DtoDeep();
+                        if (result instanceof BaseDocument) {
+                            Object myObject = ((BaseDocument) result).entity2DtoDeep();
                             // 将获取到的属性值设置给目标对象
                             myMethod.invoke(target, myObject);
                         }
@@ -131,8 +128,8 @@ public abstract class BaseEntity<D extends BaseDTO<?>> implements Serializable {
                             List list = new ArrayList(collection.size());
 
                             collection.forEach(obj -> {
-                                if (obj instanceof BaseEntity) {
-                                    BaseDTO dto = ((BaseEntity) obj).entity2DtoDeep();
+                                if (obj instanceof BaseDocument) {
+                                    BaseMongoDTO dto = ((BaseDocument) obj).entity2DtoDeep();
                                     list.add(dto);
                                 } else {
                                     list.add(obj);

@@ -1,6 +1,7 @@
 package com.why.baseframework.page;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
+import org.springframework.data.domain.Page;
 
 /**
  * @Author Y
@@ -29,13 +30,13 @@ public final class PageForm {
      * @Author Y
      * @Date 2021/5/11 9:44
      **/
-    public static <T> Page<T> createPage(long pageNum, long pageSize) {
-        return new Page<>(
-                //当前页
-                pageNum > 0 ? pageNum : DEFAULT_PAGE_NUMBER
-                ,
-                //每页显示条数
-                pageSize > 0 ? pageSize : DEFAULT_PAGE_SIZE
-        );
-    }
+//    public static <T> Page<T> createPage(long pageNum, long pageSize) {
+//        return new Page<>(
+//                //当前页
+//                pageNum > 0 ? pageNum : DEFAULT_PAGE_NUMBER
+//                ,
+//                //每页显示条数
+//                pageSize > 0 ? pageSize : DEFAULT_PAGE_SIZE
+//        );
+//    }
 }

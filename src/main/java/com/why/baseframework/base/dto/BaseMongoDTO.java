@@ -1,7 +1,7 @@
 package com.why.baseframework.base.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.why.baseframework.base.entity.BaseEntity;
+import com.why.baseframework.base.entity.BaseDocument;
 import com.why.baseframework.constants.ReflectMethodPrefix;
 import com.why.baseframework.util.ReflectionUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +21,7 @@ import java.util.*;
  */
 @Slf4j
 @SuppressWarnings("rawtypes")
-public abstract class BaseDTO<E extends BaseEntity> implements Serializable {
+public abstract class BaseMongoDTO<E extends BaseDocument> implements Serializable {
     /**
      * 序列化version
      */
@@ -38,7 +38,7 @@ public abstract class BaseDTO<E extends BaseEntity> implements Serializable {
      * entity基类的构造函数，重点是设置entity对应dto的类型
      */
     @SuppressWarnings("unchecked")
-    public BaseDTO() {
+    public BaseMongoDTO() {
         this.entityClass = ReflectionUtils.getSuperClassGenericType(getClass());
     }
 
@@ -66,7 +66,7 @@ public abstract class BaseDTO<E extends BaseEntity> implements Serializable {
 
                     Object result = m.invoke(src);
                     // 浅拷贝忽略非基本类型的属性
-                    if (result instanceof BaseEntity || result instanceof List || result == null) {
+                    if (result instanceof BaseDocument || result instanceof List || result == null) {
                         continue;
                     }
                     // get方法的后缀
@@ -121,8 +121,8 @@ public abstract class BaseDTO<E extends BaseEntity> implements Serializable {
                             continue;
                         }
                         // 将dto属性拷贝为对应实体
-                        if (result instanceof BaseDTO) {
-                            Object myObject = ((BaseDTO) result).dto2EntityDeep();
+                        if (result instanceof BaseMongoDTO) {
+                            Object myObject = ((BaseMongoDTO) result).dto2EntityDeep();
                             // 将获取到的属性值设置给目标对象
                             myMethod.invoke(target, myObject);
                         }
@@ -132,7 +132,7 @@ public abstract class BaseDTO<E extends BaseEntity> implements Serializable {
                             Set mySet = new HashSet(myList.size());
 
                             for (Object obj : myList) {
-                                Object myObject = ((BaseDTO) obj).dto2EntityDeep();
+                                Object myObject = ((BaseMongoDTO) obj).dto2EntityDeep();
                                 mySet.add(myObject);
                             }
                             // 将获取到的属性值设置给目标对象

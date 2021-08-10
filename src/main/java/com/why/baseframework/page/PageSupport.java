@@ -1,7 +1,5 @@
 package com.why.baseframework.page;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.why.baseframework.base.dto.PageDto;
 
 /**
  * @Author Y
@@ -20,7 +18,7 @@ public final class PageSupport {
      * @Author Y
      * @Date 2021/5/11 13:36
      **/
-    public static <T> Page<T> createPage(PageDto<T> pageDto) {
-        return PageForm.createPage(pageDto.getPage().getCurrent(),pageDto.getPage().getSize());
-    }
+//    public static <T> Page<T> createPage(PageDto<T> pageDto) {
+//        return PageForm.createPage(pageDto.getPage().getCurrent(),pageDto.getPage().getSize());
+//    }
 }

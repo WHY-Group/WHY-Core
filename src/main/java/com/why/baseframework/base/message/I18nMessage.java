@@ -17,7 +17,7 @@ import java.util.Locale;
  * @Company  WHY-Group
  **/
 @Component
-public class BaseMessage {
+public class I18nMessage {
 
     @Autowired
     private MessageSource messageSource;

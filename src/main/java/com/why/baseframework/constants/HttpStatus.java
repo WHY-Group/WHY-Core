@@ -6,6 +6,8 @@ package com.why.baseframework.constants;
  * @author oda
  */
 public class HttpStatus {
+    private HttpStatus(){}
+
     /**
      * 操作成功
      */

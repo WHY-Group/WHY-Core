@@ -1,6 +1,6 @@
 package com.why.baseframework.base.web.controlleradvice;
 
-import com.why.baseframework.base.message.BaseMessage;
+import com.why.baseframework.base.message.I18nMessage;
 import com.why.baseframework.base.web.exception.BusinessException;
 import com.why.baseframework.base.web.response.ResponseResult;
 import com.why.baseframework.base.web.response.ResponseUtils;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.security.auth.message.AuthException;
-import java.nio.file.AccessDeniedException;
 
 /**
  * @Author chenglin.wu
@@ -32,7 +31,7 @@ import java.nio.file.AccessDeniedException;
 public class CommonExceptionHandler {
 
     @Autowired
-    private BaseMessage baseMessage;
+    private I18nMessage i18nMessage;
 
 
     /**
@@ -63,7 +62,7 @@ public class CommonExceptionHandler {
     @ResponseBody
     public <T> ResponseResult<T> exceptionHandler(MethodArgumentNotValidException e) {
         BindingResult bindingResult = e.getBindingResult();
-        String errorMesssage = baseMessage.getMessageString("invalid.data");
+        String errorMesssage = i18nMessage.getMessageString("invalid.data");
 
         StringBuilder buf = new StringBuilder();
         int i = 0;

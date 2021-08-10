@@ -75,7 +75,7 @@ public class RedisLoginUserManager {
         if (StringUtils.isBlank(loginUserId)) {
             return null;
         }
-        return this.getLoginUserByUserId(loginUserId);
+        return this.getLoginUser(loginUserId);
     }
 
     /**
@@ -100,7 +100,7 @@ public class RedisLoginUserManager {
      * @Author Y
      * @Date 2021/4/16 16:18
      **/
-    public void delayLoginUserTime(LoginUser loginUser) {
+    public void refreshLoginTime(LoginUser loginUser) {
 
         // 过期时间
         Long expire = stringRedisTemplate.getExpire(loginUser.getToken(), TimeUnit.SECONDS);
@@ -116,12 +116,12 @@ public class RedisLoginUserManager {
     /**
      * 通过userId获取redis中的LoginUser
      *
-     * @param userId
+     * @param userId 用户id
      * @Return {@link LoginUser }
      * @Author Y
      * @Date 2021/4/16 16:18
      **/
-    public LoginUser getLoginUserByUserId(String userId) {
+    public LoginUser getLoginUser(String userId) {
         if (redisTemplate == null) {
             log.error("RedisLoginUserManager getLoginUserByUserId stringRedisTemplate is null");
         } else {
@@ -153,7 +153,13 @@ public class RedisLoginUserManager {
         }
         return null;
     }
-
+    /**
+     * 通过id批量删除登录对象
+     * @param redisId the redisId
+     * @return void
+     * @author chenglin.wu
+     * @date: 2021/8/6
+     */
     public void deleteLoginUserById(String... redisId){
         log.info("RedisLoginUserManager deleteLoginUserById id:{}", redisId);
         if (ObjectUtils.anyNull(redisTemplate)){

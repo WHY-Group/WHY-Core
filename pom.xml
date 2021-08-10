@@ -10,7 +10,7 @@
     </parent>
     <groupId>io.github.why-group</groupId>
     <artifactId>WHY-Core</artifactId>
-    <version>0.0.1-RELEASE</version>
+    <version>1.0.0-RELEASE</version>
     <name>WHY-Core</name>
     <description>WHY kernel module</description>
     <properties>
@@ -79,34 +79,6 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${swagger2.version}</version>
         </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>mysql</groupId>-->
-<!--            <artifactId>mysql-connector-java</artifactId>-->
-<!--        </dependency>-->
-        <!--mybatis-plus-->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-core</artifactId>
-            <version>${mybatis-plus.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>${mybatis-plus.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus</artifactId>
-            <version>${mybatis-plus.version}</version>
-        </dependency>
-        <!-- 多数据源插件 -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-            <version>3.4.1</version>
-        </dependency>
-
         <!-- 校验框架 -->
         <dependency>
             <groupId>javax.validation</groupId>
@@ -125,11 +97,11 @@
             <version>${fastjson.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.alibaba/druid-spring-boot-starter -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <version>${druid.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.alibaba</groupId>-->
+<!--            <artifactId>druid-spring-boot-starter</artifactId>-->
+<!--            <version>${druid.version}</version>-->
+<!--        </dependency>-->
         <!-- 验证码 -->
         <dependency>
             <groupId>com.github.penggle</groupId>
@@ -247,20 +219,20 @@
                             </executions>
                         </plugin>
                         <!--  配置GPG插件用于使用以下配置对组件进行签名 -->
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-gpg-plugin</artifactId>
-                            <version>1.5</version>
-                            <executions>
-                                <execution>
-                                    <id>sign-artifacts</id>
-                                    <phase>verify</phase>
-                                    <goals>
-                                        <goal>sign</goal>
-                                    </goals>
-                                </execution>
-                            </executions>
-                        </plugin>
+<!--                        <plugin>-->
+<!--                            <groupId>org.apache.maven.plugins</groupId>-->
+<!--                            <artifactId>maven-gpg-plugin</artifactId>-->
+<!--                            <version>1.5</version>-->
+<!--                            <executions>-->
+<!--                                <execution>-->
+<!--                                    <id>sign-artifacts</id>-->
+<!--                                    <phase>verify</phase>-->
+<!--                                    <goals>-->
+<!--                                        <goal>sign</goal>-->
+<!--                                    </goals>-->
+<!--                                </execution>-->
+<!--                            </executions>-->
+<!--                        </plugin>-->
                     </plugins>
                 </build>
                 <distributionManagement>

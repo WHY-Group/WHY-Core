@@ -1,19 +1,21 @@
 package com.why.baseframework.base.service;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.toolkit.Assert;
-import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.baomidou.mybatisplus.extension.toolkit.SqlHelper;
-import com.why.baseframework.base.entity.BaseEntity;
-import com.why.baseframework.base.mapper.BaseCustomMapper;
-import com.why.baseframework.base.message.BaseMessage;
+import com.why.baseframework.base.entity.BaseDocument;
+import com.why.baseframework.base.message.I18nMessage;
+import com.why.baseframework.base.web.exception.BusinessException;
+import com.why.baseframework.enums.ErrCodeEnum;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Map;
+import java.util.List;
 
 /**
  * @Author y
@@ -21,12 +23,15 @@ import java.util.Map;
  * @Date 2021/4/15 20:50
  **/
 @SuppressWarnings("rawtypes")
-public class BaseService<M extends BaseCustomMapper<T>, T extends BaseEntity> extends ServiceImpl<M, T> {
+public class BaseService<R extends MongoRepository<T, Serializable>, T extends BaseDocument> {
     /**
      * 国际化语言
      */
     @Autowired
-    private BaseMessage i18nMessage;
+    private I18nMessage i18nMessage;
+
+    @Autowired
+    private R baseRepository;
 
     /**
      * 获取国际化信息
@@ -35,125 +40,67 @@ public class BaseService<M extends BaseCustomMapper<T>, T extends BaseEntity> ex
      * @author chenglin.wu
      * @date: 2021/4/19
      */
-    public BaseMessage getI18nMessage() {
+    protected I18nMessage getI18nMessage() {
         return i18nMessage;
     }
 
-    /**
-     * 数据的insert操作
-     *
-     * @param entity 实体类的对象
-     * @return boolean
-     * @author chenglin.wu
-     * @date: 2021/4/20
-     */
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public boolean save(T entity) {
-        return SqlHelper.retBool(getBaseMapper().insert(entity));
+    @Transactional(rollbackFor = Exception.class, transactionManager = "mongoTransactionManager")
+    public void removeById(Serializable id){
+        this.baseRepository.deleteById(id);
     }
 
-    /**
-     * 通过ID删除一条数据
-     *
-     * @param id id
-     * @return boolean
-     * @author chenglin.wu
-     * @date: 2021/4/19
-     */
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public boolean removeById(Serializable id) {
-        return SqlHelper.retBool(this.getBaseMapper().deleteById(id));
-    }
-
-    /**
-     * 通过map直接删除数据
-     *
-     * @param columnMap map
-     * @return boolean
-     * @author chenglin.wu
-     * @date: 2021/4/19
-     */
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public boolean removeByMap(Map<String, Object> columnMap) {
-        Assert.notEmpty(columnMap, "error: columnMap must not be empty");
-        return SqlHelper.retBool(getBaseMapper().deleteByMap(columnMap));
-    }
-
-    /**
-     * 通过wrapper删除数据
-     *
-     * @param queryWrapper wrapper
-     * @return boolean
-     * @author chenglin.wu
-     * @date: 2021/4/19
-     */
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public boolean remove(Wrapper<T> queryWrapper) {
-        return SqlHelper.retBool(getBaseMapper().delete(queryWrapper));
-    }
-
-    /**
-     * 通过ID批量删除数据
-     *
-     * @param idList id的集合
-     * @return boolean
-     * @author chenglin.wu
-     * @date: 2021/4/19
-     */
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public boolean removeByIds(Collection<? extends Serializable> idList) {
-        if (CollectionUtils.isEmpty(idList)) {
-            return false;
+    @Transactional(rollbackFor = Exception.class, transactionManager = "mongoTransactionManager")
+    public void removeByIds(Serializable[] ids){
+        for (Serializable id : ids) {
+            this.baseRepository.deleteById(id);
         }
+    }
 
-        return SqlHelper.retBool(getBaseMapper().deleteBatchIds(idList));
+    public List<T> find(T example){
+        return this.baseRepository.findAll(Example.of(example));
+    }
+
+    public List<T> findAll(){
+        return this.baseRepository.findAll();
+    }
+
+    public Page<T> findPage(T example, Pageable pageable){
+        return this.baseRepository.findAll(Example.of(example), pageable);
+    }
+
+    public Page<T> findPage(T example, ExampleMatcher matcher, Pageable pageable){
+        return this.baseRepository.findAll(Example.of(example, matcher), pageable);
+    }
+
+    public T get(Serializable id) throws Exception {
+        return this.baseRepository.findById(id).orElse(null);
+    }
+
+    @Transactional(rollbackFor = Exception.class, transactionManager = "mongoTransactionManager")
+    public T insert(T entity){
+        entity.setId(null);
+        return this.baseRepository.save(entity);
+    }
+
+    @Transactional(rollbackFor = Exception.class, transactionManager = "mongoTransactionManager")
+    public T update(T entity) throws BusinessException {
+        String id = entity.getId();
+        if (StringUtils.isBlank(id)){
+            throw new BusinessException(ErrCodeEnum.THROWABLE.getCode(),"entity id is empty please check");
+        }
+        return this.baseRepository.save(entity);
+    }
+
+    @Transactional(rollbackFor = Exception.class, transactionManager = "mongoTransactionManager")
+    public List<T> saveAll(List<T> entityList){
+        return this.baseRepository.saveAll(entityList);
     }
 
     /**
-     * 通过实体类更新
-     *
-     * @param entity 实体类
-     * @return boolean
-     * @author chenglin.wu
-     * @date: 2021/4/19
+     * @return the baseRepository
      */
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public boolean updateById(T entity) {
-        return SqlHelper.retBool(getBaseMapper().updateById(entity));
+    protected R getBaseRepository() {
+        return baseRepository;
     }
 
-    /**
-     * 通过wrapper直接更新
-     *
-     * @param updateWrapper wrapper
-     * @return boolean
-     * @author chenglin.wu
-     * @date: 2021/4/19
-     */
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public boolean update(Wrapper<T> updateWrapper) {
-        return update(null, updateWrapper);
-    }
-
-    /**
-     * 通过entity和wrapper进行更新操作
-     *
-     * @param entity        实体类
-     * @param updateWrapper 更新的Wrapper
-     * @return boolean
-     * @author chenglin.wu
-     * @date: 2021/4/19
-     */
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public boolean update(T entity, Wrapper<T> updateWrapper) {
-        return SqlHelper.retBool(getBaseMapper().update(entity, updateWrapper));
-    }
 }
