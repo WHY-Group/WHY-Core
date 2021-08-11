@@ -1,4 +1,4 @@
-package com.why.baseframework.base.mapper;
+package com.why.baseframework.base.repository;
 
 
 import com.why.baseframework.base.entity.BaseDocument;

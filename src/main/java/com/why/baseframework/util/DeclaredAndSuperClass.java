@@ -9,14 +9,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * @author chenglin.wu
- * @description:
- * @title: DeclaredAndSuperClass
- * @projectName WHY-Core
- * @date 2021/8/10
- * @company 上海织田信息技术有限公司 (Oda-Group)
- */
 public class DeclaredAndSuperClass {
     private final Class<?> declaredClass;
 

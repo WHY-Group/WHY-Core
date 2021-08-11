@@ -164,7 +164,7 @@ public final class ReflectionUtils {
      * @date: 2021/4/16
      */
     @SuppressWarnings("rawtypes")
-    private static Class getSuperClassGenericType(Class clazz, int index) {
+    public static Class getSuperClassGenericType(Class clazz, int index) {
         // 获取当前class字节码对象的直接父类包括当前类的泛型
         Type genType = clazz.getGenericSuperclass();
 

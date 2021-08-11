@@ -146,7 +146,8 @@ public final class StrChartUtil {
     }
 
     /**
-     * 将分割出来的字符串转为全小写
+     * 将分割出来的字符串转为全小写,如果separator不传的情况下则默认为 "_"
+     * <p>
      * 例： param1： "strTran"  param2： "_"   result: "str_tran"
      *
      * @param translationStr the translationStr 需要转换的字符串

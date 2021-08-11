@@ -1,20 +1,26 @@
 package com.why.baseframework.base.service;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.why.baseframework.base.dto.PageInfo;
+import com.why.baseframework.base.dto.PageSearch;
 import com.why.baseframework.base.entity.BaseDocument;
 import com.why.baseframework.base.message.I18nMessage;
 import com.why.baseframework.base.web.exception.BusinessException;
 import com.why.baseframework.enums.ErrCodeEnum;
+import com.why.baseframework.util.QueryUtils;
+import com.why.baseframework.util.ReflectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 /**
@@ -24,6 +30,9 @@ import java.util.List;
  **/
 @SuppressWarnings("rawtypes")
 public class BaseMongoService<R extends MongoRepository<T, Serializable>, T extends BaseDocument> {
+
+    @JsonIgnore
+    private Class<T> docClass;
     /**
      * 国际化语言
      */
@@ -32,6 +41,21 @@ public class BaseMongoService<R extends MongoRepository<T, Serializable>, T exte
 
     @Autowired
     private R baseRepository;
+
+    @Autowired
+    private MongoTemplate mongoTemplate;
+
+    public BaseMongoService() {
+        this.docClass = ReflectionUtils.getSuperClassGenericType(getClass(),1);
+    }
+
+    public Class<T> getDocClass() {
+        return docClass;
+    }
+
+    public MongoTemplate getMongoTemplate() {
+        return mongoTemplate;
+    }
 
     /**
      * 获取国际化信息
@@ -121,17 +145,35 @@ public class BaseMongoService<R extends MongoRepository<T, Serializable>, T exte
     }
 
     /**
-     * 分页查询
+     * 分页查询 主要解决有时间查询的字段，用between的方式解决，所有的条件都是and关系
      *
-     * @param example  查询模板
-     * @param matcher  匹配数据
-     * @param pageable 分页条件
+     * @param pageSearch 分页查询的search类
      * @return Page<T>
      * @author chenglin.wu
      * @date: 2021/8/10
      */
-    public Page<T> findPage(T example, ExampleMatcher matcher, Pageable pageable) {
-        return this.baseRepository.findAll(Example.of(example, matcher), pageable);
+    public PageInfo<T> findPage(PageSearch<T> pageSearch) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        PageInfo<T> page = pageSearch.getPage();
+
+        // 创建查询的基本语句
+        Query query = QueryUtils.createLikeQuery(pageSearch.getSearchExample(), true, pageSearch.getSort());
+        // 创建扩展语句，主要用于时间的扩展
+        QueryUtils.queryWithExtra(query, pageSearch.getExtras());
+
+        // count总条数
+        long count = mongoTemplate.count(query, this.getDocClass());
+        long totalPage = count / page.getPageSize();
+        long mod = count % page.getPageSize();
+        if (mod != 0) {
+            totalPage += 1;
+        }
+        page.setTotalPage(totalPage);
+        // 构造skip和limit实现真正的分页
+        QueryUtils.pagingQuery(pageSearch, query);
+        // 查询数据并返回
+        List<T> content = mongoTemplate.find(query, this.getDocClass());
+        page.setContent(content);
+        return page;
     }
 
     /**

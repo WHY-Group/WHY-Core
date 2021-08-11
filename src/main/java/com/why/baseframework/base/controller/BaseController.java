@@ -1,7 +1,7 @@
 package com.why.baseframework.base.controller;
 
 import com.why.baseframework.base.entity.BaseDocument;
-import com.why.baseframework.base.mapper.BaseMongoRepository;
+import com.why.baseframework.base.repository.BaseMongoRepository;
 import com.why.baseframework.base.message.I18nMessage;
 import com.why.baseframework.base.service.BaseMongoService;
 import com.why.baseframework.base.web.response.ResponseResult;
@@ -209,7 +209,7 @@ public class BaseController<S extends BaseMongoService<M, T>, M extends BaseMong
 //     * @author W
 //     * @date 2021-05-24
 //     */
-//    public ResponseResult<Page<T>> findPage(PageDto<T> pageDto) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+//    public ResponseResult<Page<T>> findPage(PageSearch<T> pageDto) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 //        QueryWrapper<T> queryWrapper = this.getPageQueryWrapper(pageDto);
 //        // 如果没有传排序字段和排序方式则使用create_time默认排序
 //        Page<T> inputPage = this.getOrder(pageDto);
@@ -225,7 +225,7 @@ public class BaseController<S extends BaseMongoService<M, T>, M extends BaseMong
 //     * @author W
 //     * @date 2021-05-29
 //     */
-//    private QueryWrapper<T> getPageQueryWrapper(PageDto<T> pageDto) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+//    private QueryWrapper<T> getPageQueryWrapper(PageSearch<T> pageDto) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 //        QueryWrapper<T> queryWrapper = new QueryWrapper<>();
 //        if (ObjectUtils.allNotNull(pageDto.getSearchExample())) {
 ////            ReflectionUtils.createPageWrapper2Field(pageDto.getSearchExample(), queryWrapper);
@@ -254,7 +254,7 @@ public class BaseController<S extends BaseMongoService<M, T>, M extends BaseMong
 //     * @author W
 //     * @date 2021-05-29
 //     */
-//    public ResponseResult<Page<T>> findPage(PageDto<T> pageDto, String myselfId) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+//    public ResponseResult<Page<T>> findPage(PageSearch<T> pageDto, String myselfId) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 //        QueryWrapper<T> queryWrapper = this.getPageQueryWrapper(pageDto);
 //        Page<T> inputPage = this.getOrder(pageDto);
 //        queryWrapper.ne("id", myselfId);
@@ -271,12 +271,12 @@ public class BaseController<S extends BaseMongoService<M, T>, M extends BaseMong
 //     * @author W
 //     * @date 2021-05-29
 //     */
-//    private Page<T> getOrder(PageDto<T> pageDto) {
+//    private Page<T> getOrder(PageSearch<T> pageDto) {
 //        // 如果没有传排序字段和排序方式则使用create_time默认排序
 //        Page<T> inputPage = pageDto.getPage();
 //        List<OrderItem> orders = inputPage.getOrders();
 //        if (orders.isEmpty()) {
-//            inputPage.addOrder(DefaultOrderItem.getDefault());
+//            inputPage.addOrder(OrderItem.getDefault());
 //        }
 //        return inputPage;
 //    }
@@ -288,7 +288,7 @@ public class BaseController<S extends BaseMongoService<M, T>, M extends BaseMong
 //     * @Author Y
 //     * @Date 2021/5/11 10:56
 //     **/
-//    public Page<T> createPage(PageDto<T> pageDto) {
+//    public Page<T> createPage(PageSearch<T> pageDto) {
 //        return PageSupport.createPage(pageDto);
 //    }
 //
@@ -299,7 +299,7 @@ public class BaseController<S extends BaseMongoService<M, T>, M extends BaseMong
 //     * @Author Y
 //     * @Date 2021/5/11 10:56
 //     **/
-//    public <D> Page<D> createPageBy(PageDto<D> pageDto) {
+//    public <D> Page<D> createPageBy(PageSearch<D> pageDto) {
 //        return PageSupport.createPage(pageDto);
 //    }
 

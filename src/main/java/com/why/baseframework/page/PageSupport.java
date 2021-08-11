@@ -18,7 +18,7 @@ public final class PageSupport {
      * @Author Y
      * @Date 2021/5/11 13:36
      **/
-//    public static <T> Page<T> createPage(PageDto<T> pageDto) {
+//    public static <T> Page<T> createPage(PageSearch<T> pageDto) {
 //        return PageForm.createPage(pageDto.getPage().getCurrent(),pageDto.getPage().getSize());
 //    }
 }
