@@ -3,7 +3,7 @@ package com.why.baseframework.constants;
 /**
  * 返回状态码
  *
- * @author oda
+ * @author W
  */
 public class HttpStatus {
     private HttpStatus(){}

@@ -14,7 +14,7 @@ import java.util.Random;
  * @Author bin.hu
  * @Description: 验证码工具类
  * @Title: VerifyCodeUtils
- * @ProjectName oda-core
+ * @ProjectName WHY-core
  * @Date 2021/4/22
  * @Company  WHY-Group
  */

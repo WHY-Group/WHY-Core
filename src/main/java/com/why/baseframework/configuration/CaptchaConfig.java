@@ -12,7 +12,7 @@ import java.util.Properties;
 /**
  * 验证码配置
  *
- * @author oda
+ * @author W
  */
 @Configuration
 public class CaptchaConfig {

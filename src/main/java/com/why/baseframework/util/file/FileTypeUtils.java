@@ -9,7 +9,7 @@ import java.io.File;
  * @Author bin.hu
  * @Description: 文件类型工具类
  * @Title: FileTypeUtils
- * @ProjectName oda-core
+ * @ProjectName WHY-core
  * @Date 2021/4/22
  * @Company  WHY-Group
  */

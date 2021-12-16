@@ -36,7 +36,7 @@ public class OrderItem {
     public Sort.Order getOrder() {
         if (StringUtils.isBlank(this.direction)) {
             return new Sort.Order(Sort.Direction.ASC, orderColumn);
-        } else if (QueryConstants.DESC.equals(direction.toUpperCase())) {
+        } else if (QueryConstants.DESC.equalsIgnoreCase(direction)) {
             return Sort.Order.desc(orderColumn);
         }
         return Sort.Order.asc(orderColumn);
