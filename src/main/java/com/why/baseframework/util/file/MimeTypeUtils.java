@@ -4,7 +4,7 @@ package com.why.baseframework.util.file;
  * @Author bin.hu
  * @Description: 媒体类型工具类
  * @Title: MimeTypeUtils
- * @ProjectName oda-core
+ * @ProjectName WHY-core
  * @Date 2021/4/22
  * @Company  WHY-Group
  */

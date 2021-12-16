@@ -14,7 +14,7 @@ import java.util.Arrays;
  * @Author bin.hu
  * @Description: 文件处理工具类
  * @Title: FileUtil
- * @ProjectName oda-core
+ * @ProjectName WHY-core
  * @Date 2021/4/22
  * @Company  WHY-Group
  */
