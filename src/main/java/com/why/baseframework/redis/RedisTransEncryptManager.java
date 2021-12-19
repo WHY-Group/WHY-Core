@@ -54,7 +54,7 @@ public class RedisTransEncryptManager {
      * @date 2021/5/16
      */
     public void setTransEncryptKey(String transToken, String encryptKey, int minute) {
-        stringRedisTemplate.opsForValue().set(transToken, encryptKey, IntConstants.INT_10,
+        stringRedisTemplate.opsForValue().set(transToken, encryptKey, minute,
                 TimeUnit.MINUTES);
     }
 

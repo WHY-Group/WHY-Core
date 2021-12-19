@@ -71,7 +71,7 @@ public class GlobalController {
     public ResponseResult<Map<String, String>> getVerificationCode() throws IOException {
         Map<String, String> map = new HashMap<>(IntConstants.INT_2);
 
-        String text = captchaProducer.createText();
+        String text = RandomStringUtils.random(IntConstants.INT_4);
         log.info("验证码图片文字：{}",text);
         BufferedImage image = captchaProducer.createImage(text);
         FastByteArrayOutputStream outputStream = this.image2OutputStream(image);
