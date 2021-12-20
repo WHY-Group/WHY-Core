@@ -1,16 +1,14 @@
 package com.why.baseframework.configuration;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.sql.DataSource;
-
+import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
-import com.alibaba.druid.pool.DruidDataSource;
+import javax.sql.DataSource;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author H
@@ -59,8 +57,10 @@ public class DataSourceConfig {
 		targetDataSources.put(DataSourceType.DEFAULT, dataSource1());
 		targetDataSources.put(DataSourceType.SOURCE2, dataSource2());
 		MoreDataSourceConfig dataSources = new MoreDataSourceConfig();
-		dataSources.setTargetDataSources(targetDataSources);// 该方法是AbstractRoutingDataSource的方法
-		dataSources.setDefaultTargetDataSource(targetDataSources.get(DataSourceType.DEFAULT));// 默认的datasource
+		// 该方法是AbstractRoutingDataSource的方法
+		dataSources.setTargetDataSources(targetDataSources);
+		// 默认的datasource
+		dataSources.setDefaultTargetDataSource(targetDataSources.get(DataSourceType.DEFAULT));
 		return dataSources;
 	}
 }

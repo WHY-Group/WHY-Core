@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.security.auth.message.AuthException;
-import java.nio.file.AccessDeniedException;
 
 /**
  * @Author W

@@ -1,7 +1,6 @@
 package com.why.baseframework.configuration;
 
 import com.why.baseframework.base.web.interceptor.CustomerLocalChangeInterceptor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
