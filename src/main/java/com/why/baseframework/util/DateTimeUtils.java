@@ -477,11 +477,6 @@ public class DateTimeUtils {
         return format.parse(str);
     }
 
-    public static void main(String[] args) throws Exception {
-        Date birthday = getBirthday2IdCard("510311199510251317");
-        System.out.println(ObjectToString(birthday,TimeFormat.DATETIME));
-    }
-
     /**
      * 获取上个月的第一天
      *
