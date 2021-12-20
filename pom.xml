@@ -10,7 +10,7 @@
     </parent>
     <groupId>io.github.why-group</groupId>
     <artifactId>WHY-Core</artifactId>
-    <version>0.0.2-RELEASE</version>
+    <version>1.0.0-RELEASE</version>
     <name>WHY-Core</name>
     <description>WHY kernel module</description>
     <properties>
@@ -20,7 +20,7 @@
         <fastjson.version>1.2.73</fastjson.version>
         <druid.version>1.1.10</druid.version>
         <hibernate-validator.version>6.0.21.Final</hibernate-validator.version>
-        <swagger2.version>2.9.2</swagger2.version>
+        <swagger2.version>3.0.0</swagger2.version>
         <kaptcha.version>2.3.2</kaptcha.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
