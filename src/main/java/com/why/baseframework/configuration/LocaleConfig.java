@@ -24,8 +24,11 @@ import java.util.Locale;
  **/
 @Configuration
 public class LocaleConfig implements WebMvcConfigurer {
-    @Autowired
-    private MessageSource messageSource;
+    private final MessageSource messageSource;
+
+    public LocaleConfig(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
 
     /**
      * @Return LocaleResolver

@@ -20,13 +20,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author chenglin.wu
+ * @author W
  * @description:
  * @title: GlobalController
  * @projectName tianrui
  * @date 2021年05月16日
  * @company WHY-Group
  */
+@SuppressWarnings("ALL")
 @Slf4j
 @RestController
 @RequestMapping("/global")

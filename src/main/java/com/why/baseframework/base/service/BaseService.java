@@ -26,13 +26,14 @@ public class BaseService<M extends BaseCustomMapper<T>, T extends BaseEntity> ex
      * 国际化语言
      */
     @Autowired
+    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     private BaseMessage i18nMessage;
 
     /**
      * 获取国际化信息
      *
      * @return BaseMessage
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/19
      */
     public BaseMessage getI18nMessage() {
@@ -44,7 +45,7 @@ public class BaseService<M extends BaseCustomMapper<T>, T extends BaseEntity> ex
      *
      * @param entity 实体类的对象
      * @return boolean
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/20
      */
     @Override
@@ -58,7 +59,7 @@ public class BaseService<M extends BaseCustomMapper<T>, T extends BaseEntity> ex
      *
      * @param id id
      * @return boolean
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/19
      */
     @Override
@@ -72,7 +73,7 @@ public class BaseService<M extends BaseCustomMapper<T>, T extends BaseEntity> ex
      *
      * @param columnMap map
      * @return boolean
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/19
      */
     @Override
@@ -87,7 +88,7 @@ public class BaseService<M extends BaseCustomMapper<T>, T extends BaseEntity> ex
      *
      * @param queryWrapper wrapper
      * @return boolean
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/19
      */
     @Override
@@ -101,7 +102,7 @@ public class BaseService<M extends BaseCustomMapper<T>, T extends BaseEntity> ex
      *
      * @param idList id的集合
      * @return boolean
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/19
      */
     @Override
@@ -119,7 +120,7 @@ public class BaseService<M extends BaseCustomMapper<T>, T extends BaseEntity> ex
      *
      * @param entity 实体类
      * @return boolean
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/19
      */
     @Override
@@ -133,7 +134,7 @@ public class BaseService<M extends BaseCustomMapper<T>, T extends BaseEntity> ex
      *
      * @param updateWrapper wrapper
      * @return boolean
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/19
      */
     @Override
@@ -148,7 +149,7 @@ public class BaseService<M extends BaseCustomMapper<T>, T extends BaseEntity> ex
      * @param entity        实体类
      * @param updateWrapper 更新的Wrapper
      * @return boolean
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/19
      */
     @Override

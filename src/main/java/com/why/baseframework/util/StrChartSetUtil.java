@@ -8,10 +8,10 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
 /**
- * @Author chenglin.wu
+ * @Author W
  * @Description:
  * @Title: StrChartSetUtil
- * @ProjectName base_framework
+ * @ProjectName WHY-Core
  * @Date 2021/5/7
  * @Company  WHY-Group
  */
@@ -29,7 +29,7 @@ public final class StrChartSetUtil {
      *
      * @param str 字符串
      * @return String
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/5/7
      */
     public static String getEncoding(final String str) {

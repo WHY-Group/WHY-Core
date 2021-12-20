@@ -1,10 +1,10 @@
 package com.why.baseframework.util.file;
 
 /**
- * @Author bin.hu
+ * @Author H
  * @Description: 媒体类型工具类
  * @Title: MimeTypeUtils
- * @ProjectName WHY-core
+ * @ProjectName WHY-Core
  * @Date 2021/4/22
  * @Company  WHY-Group
  */

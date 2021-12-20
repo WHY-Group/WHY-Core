@@ -19,8 +19,11 @@ import java.util.Locale;
 @Component
 public class BaseMessage {
 
-    @Autowired
-    private MessageSource messageSource;
+    private final MessageSource messageSource;
+
+    public BaseMessage(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
 
     /**
      * 返回对应Locale的语言的返回值

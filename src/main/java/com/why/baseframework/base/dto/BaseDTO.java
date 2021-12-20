@@ -11,7 +11,7 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 /**
- * @Author chenglin.wu
+ * @Author W
  * @Description:
  * @Title: BaseDto
  * @ProjectName base_framework
@@ -46,7 +46,7 @@ public abstract class BaseDTO<E extends BaseEntity> implements Serializable {
      * @param src    需要转换的对象
      * @param target 转换成功的对象
      * @return Object
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     public static Object populate(Object src, Object target) {
@@ -91,7 +91,7 @@ public abstract class BaseDTO<E extends BaseEntity> implements Serializable {
      * @param src    被拷贝对象
      * @param target 保存对象
      * @return Object 拷贝完成后的对象
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     @SuppressWarnings({"rawtypes", "unchecked"})
@@ -152,7 +152,7 @@ public abstract class BaseDTO<E extends BaseEntity> implements Serializable {
      *
      * @param dtos 所有的实体类集合
      * @return List<D> 泛型对应的DTO类型对象集合 List<D>
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     public List<E> dto2Entities(List<?> dtos) {
@@ -178,7 +178,7 @@ public abstract class BaseDTO<E extends BaseEntity> implements Serializable {
      *
      * @param dtos 所有的实体类集合
      * @return List<D> 泛型对应的DTO类型对象集合 List<D>
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     public List<E> dto2EntitiesDeep(List<?> dtos) {
@@ -203,7 +203,7 @@ public abstract class BaseDTO<E extends BaseEntity> implements Serializable {
      * 将DTO转换成entity
      *
      * @return E entity的实例
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     public E dto2Entity() {
@@ -222,7 +222,7 @@ public abstract class BaseDTO<E extends BaseEntity> implements Serializable {
      * 将DTO转换成entity，并可以拷贝复杂属性
      *
      * @return E entity的实例
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     public E dto2EntityDeep() {

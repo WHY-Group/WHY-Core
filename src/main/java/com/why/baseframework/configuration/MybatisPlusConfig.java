@@ -12,10 +12,10 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Date;
 
 /**
- * @author chenglin.wu
+ * @author W
  * @description:
  * @title: MybatisPlusConfig
- * @projectName tianrui
+ * @projectName WHY-Core
  * @date 2021年05月16日
  * @company WHY-Group
  */

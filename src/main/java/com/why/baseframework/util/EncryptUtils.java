@@ -14,7 +14,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 /**
- * @Author chenglin.wu
+ * @Author W
  * @Description:
  * @Title: ReflectionUtils
  * @Date 2021/4/22
@@ -44,7 +44,7 @@ public final class EncryptUtils {
      *
      * @param strFix 计算秘钥字符串
      * @return String
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/22
      */
     public static String getEncryptKey(final String strFix) {
@@ -70,7 +70,7 @@ public final class EncryptUtils {
      * @param content    内容
      * @param encryptKey 秘钥
      * @return String
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/22
      */
     public static String aesEncrypt(String content, String encryptKey) throws Exception {
@@ -83,7 +83,7 @@ public final class EncryptUtils {
      * @param content    内容
      * @param encryptKey 秘钥
      * @return byte[]
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/22
      */
     private static byte[] aesEncryptToBytes(String content, String encryptKey) throws Exception {
@@ -100,7 +100,7 @@ public final class EncryptUtils {
      * @param encryptStr 密文字符串
      * @param decryptKey 秘钥
      * @return String
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/22
      */
     public static String aesDecrypt(String encryptStr, String decryptKey) throws Exception {
@@ -113,7 +113,7 @@ public final class EncryptUtils {
      * @param encryptBytes 密文字节
      * @param decryptKey   秘钥
      * @return String
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/22
      */
     private static String aesDecryptByBytes(byte[] encryptBytes, String decryptKey) throws Exception {
@@ -132,7 +132,7 @@ public final class EncryptUtils {
      *
      * @param bytes 字节
      * @return String
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/22
      */
     private static String base64Encode(byte[] bytes) {
@@ -144,7 +144,7 @@ public final class EncryptUtils {
      *
      * @param base64Code 编码字符串
      * @return byte[]
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/22
      */
     private static byte[] base64Decode(String base64Code) throws Exception {
@@ -156,7 +156,7 @@ public final class EncryptUtils {
      *
      * @param str 明文字符串
      * @return String
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/22
      */
     public static String toSha1(String str) throws NoSuchAlgorithmException, UnsupportedEncodingException {

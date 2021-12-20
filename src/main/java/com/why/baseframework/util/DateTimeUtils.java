@@ -10,19 +10,20 @@ import java.util.Date;
 import java.util.regex.Pattern;
 
 /**
- * @author bin.hu
+ * @author H
  * @description: 时间类型工具类
  * @title: DateTimeUtils
  * @date 2021年4月22日
  * @company WHY-Group
  */
+@SuppressWarnings("unused")
 public class DateTimeUtils {
     /**
      * 将Long、String(yyyy-MM-dd HH:mm:ss格式或yyyy-MM-dd格式)转成时间类型
      *
      * @param time 时间数据
      * @return: Date
-     * @author: bin.hu
+     * @author: H
      * @date: 2021/4/22
      */
     public static Date ObjectToDate(Object time) throws Exception {
@@ -65,7 +66,7 @@ public class DateTimeUtils {
      *
      * @param time 时间数据
      * @return: Long
-     * @author: bin.hu
+     * @author: H
      * @date: 2021/4/22
      */
     public static Long ObjectToLong(Object time) throws Exception {
@@ -104,7 +105,7 @@ public class DateTimeUtils {
      * @param time 时间数据
      * @param type 返回String类型的格式
      * @return: String
-     * @author: bin.hu
+     * @author: H
      * @date: 2021/4/22
      */
     public static String ObjectToString(Object time, TimeFormat type) throws Exception {
@@ -142,7 +143,7 @@ public class DateTimeUtils {
      * @param day   日
      * @param type  返回的时间格式
      * @return: Date
-     * @author: bin.hu
+     * @author: H
      * @date: 2021/4/22
      */
     public static Date getDate(int year, int month, int day, TimeFormat type) throws ParseException {
@@ -166,7 +167,7 @@ public class DateTimeUtils {
      * @param day   日
      * @param type  返回数据的时间格式
      * @return: Date
-     * @author: bin.hu
+     * @author: H
      * @date: 2021/4/22
      */
     public static Date getDate(Date date, int year, int month, int day, TimeFormat type) throws ParseException {
@@ -185,7 +186,7 @@ public class DateTimeUtils {
      * @param formatDate 格式化完成的时间字符串
      * @param format     格式
      * @return: Date
-     * @author: bin.hu
+     * @author: H
      * @date: 2021/4/22
      */
     public static Date getDate(String formatDate, TimeFormat format) throws ParseException {
@@ -201,7 +202,7 @@ public class DateTimeUtils {
      * @param second 秒
      * @param type   返回时间的格式
      * @return: Date
-     * @author: bin.hu
+     * @author: H
      * @date: 2021/4/22
      */
     public static Date getTime(int hour, int minute, int second, TimeFormat type) throws ParseException {
@@ -225,7 +226,7 @@ public class DateTimeUtils {
      * @param second 秒
      * @param type   返回时间的格式
      * @return: Date
-     * @author: bin.hu
+     * @author: H
      * @date: 2021/4/22
      */
     public static Date getTime(Date date, int hour, int minute, int second, TimeFormat type) throws ParseException {
@@ -244,7 +245,7 @@ public class DateTimeUtils {
      * @param timeInterval 间隔时间
      * @param timeType     间隔时间类型(使用Calendar类的常量)
      * @return: Date
-     * @author: bin.hu
+     * @author: H
      * @date: 2021/4/22
      */
     public static Date getTime(Date date, int timeInterval, TimeTypes timeType) throws ParseException {
@@ -261,7 +262,7 @@ public class DateTimeUtils {
      *
      * @param date 时间数据
      * @return: Date
-     * @author: bin.hu
+     * @author: H
      * @date: 2021/4/22
      */
     public static Date getDateHold2Hour(Date date) throws ParseException {
@@ -275,7 +276,7 @@ public class DateTimeUtils {
      *
      * @param time 时间数据
      * @return: Date
-     * @author: bin.hu
+     * @author: H
      * @date: 2021/4/22
      */
     public static Date getDateFromTime(Date time) throws Exception {
@@ -293,7 +294,7 @@ public class DateTimeUtils {
      * @param date2    时间2
      * @param timeType 对比单位(year,month,day,hour,minutes,second,millisecond)
      * @return: long
-     * @author: bin.hu
+     * @author: H
      * @date: 2021/4/22
      */
     public static long compareTo(Date date1, Date date2, TimeTypes timeType) throws Exception {
@@ -312,7 +313,7 @@ public class DateTimeUtils {
      * 获取前天的日期
      *
      * @return: Date
-     * @author: bin.hu
+     * @author: H
      * @date: 2021/4/22
      */
     public static Date getBeforeYesterday() throws ParseException {
@@ -332,7 +333,7 @@ public class DateTimeUtils {
      *
      * @param date 给定的时间
      * @return: Date
-     * @author: bin.hu
+     * @author: H
      * @date: 2021/4/22
      */
     public static Date getBeforeYesterday(Date date) throws ParseException {
@@ -352,7 +353,7 @@ public class DateTimeUtils {
      *
      * @param date 指定时间
      * @return: Date
-     * @author: bin.hu
+     * @author: H
      * @date: 2021/4/22
      */
     public static Date getNextDay(Date date) {
@@ -367,7 +368,7 @@ public class DateTimeUtils {
      *
      * @param date 指定时间
      * @return: Date
-     * @author: bin.hu
+     * @author: H
      * @date: 2021/4/22
      */
     public static Date getYesterday(Date date) {
@@ -384,7 +385,7 @@ public class DateTimeUtils {
      * @param date2 时间2
      * @param flag  是否包含等于
      * @return: boolean
-     * @author: bin.hu
+     * @author: H
      * @date: 2021/4/22
      */
     public static boolean Date1BeforeDate2(Date date1, Date date2, boolean flag) throws Exception {
@@ -408,7 +409,7 @@ public class DateTimeUtils {
      * @param beginTime 开始时间
      * @param endTime   结束时间
      * @return: boolean
-     * @author: bin.hu
+     * @author: H
      * @date: 2021/4/22
      */
     public static boolean dateBetween(Date date, Date beginTime, Date endTime) throws Exception {
@@ -430,7 +431,7 @@ public class DateTimeUtils {
      * @param begin 开始时间
      * @param end   结束时间
      * @return: String 返回过去了多久
-     * @author: bin.hu
+     * @author: H
      * @date: 2021/4/22
      */
     public static String getTimeStr(Date begin, Date end) {
@@ -460,7 +461,7 @@ public class DateTimeUtils {
      *
      * @param idCard 身份证号
      * @return: Date
-     * @author: bin.hu
+     * @author: H
      * @date: 2021/4/22
      */
     public static Date getBirthday2IdCard(String idCard) throws ParseException {
@@ -481,7 +482,7 @@ public class DateTimeUtils {
      * 获取上个月的第一天
      *
      * @return: Date
-     * @author: bin.hu
+     * @author: H
      * @date: 2021/4/22
      */
     public static Date getLastMonthFirstDay() {
@@ -503,7 +504,7 @@ public class DateTimeUtils {
      * 获取上个月的最后一天
      *
      * @return: Date
-     * @author: bin.hu
+     * @author: H
      * @date: 2021/4/22
      */
     public static Date getLastMonthLastDay() {
@@ -584,7 +585,7 @@ public class DateTimeUtils {
          * 获取当前时间类型代表的毫秒数(year - 365天 ， month - 30天)
          *
          * @return: int
-         * @author: bin.hu
+         * @author: H
          * @date: 2021/4/22
          */
         public long getTime() {
@@ -595,7 +596,7 @@ public class DateTimeUtils {
          * 获取当前时间的类型(Calendar常量值)
          *
          * @return: int
-         * @author: bin.hu
+         * @author: H
          * @date: 2021/4/22
          */
         public int getType() {
@@ -643,7 +644,7 @@ public class DateTimeUtils {
          * 获取时间类型
          *
          * @return: String
-         * @author: bin.hu
+         * @author: H
          * @date: 2021/4/22
          */
         public String getTimeType() throws Exception {
@@ -654,7 +655,7 @@ public class DateTimeUtils {
          * 获取时间格式
          *
          * @return: String
-         * @author: bin.hu
+         * @author: H
          * @date: 2021/4/22
          */
         public String getValue() {

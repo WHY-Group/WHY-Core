@@ -11,10 +11,10 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
 /**
- * @Author chenglin.wu
+ * @Author W
  * @Description:
  * @Title: CorsConstants
- * @ProjectName base_framework
+ * @ProjectName WHY-Core
  * @Date 2021/4/19
  * @Company  WHY-Group
  */

@@ -1,7 +1,7 @@
 package com.why.baseframework.configuration;
 
 /**
- * @author bin.hu
+ * @author H
  * @description: 多数据源枚举
  * @title: DataSourceType
  * @projectName baseframework

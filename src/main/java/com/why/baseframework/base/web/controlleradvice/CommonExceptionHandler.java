@@ -20,15 +20,16 @@ import javax.security.auth.message.AuthException;
 import java.nio.file.AccessDeniedException;
 
 /**
- * @Author chenglin.wu
+ * @Author W
  * @Description:
  * @Title: CommonExceptionHandler
- * @ProjectName base_framework
+ * @ProjectName WHY-Core
  * @Date 2021/4/16 14:23
  * @Company WHY-Group
  */
 @Slf4j
 @ControllerAdvice
+@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 public class CommonExceptionHandler {
 
     @Autowired
@@ -40,7 +41,7 @@ public class CommonExceptionHandler {
      *
      * @param e 异常
      * @return ResponseResult<T>
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     @ExceptionHandler(AuthException.class)
@@ -55,8 +56,7 @@ public class CommonExceptionHandler {
      *
      * @param e 方法参数校验异常
      * @return ResponseResult<T>
-     * @throws
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/19
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -86,7 +86,7 @@ public class CommonExceptionHandler {
      *
      * @param e 业务异常的处理
      * @return ResponseResult<T>
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/19
      */
     @ExceptionHandler(BusinessException.class)
@@ -112,9 +112,9 @@ public class CommonExceptionHandler {
     }
 
     /**
-     * @param e
+     * @param e exception
      * @return ResponseResult<T>
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     @ExceptionHandler(BindException.class)
@@ -130,7 +130,7 @@ public class CommonExceptionHandler {
      *
      * @param e 所有异常
      * @return ResponseResult<T>
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/19
      */
     @ExceptionHandler(Exception.class)
@@ -148,7 +148,7 @@ public class CommonExceptionHandler {
      *
      * @param throwable 异常处理
      * @return Throwable
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/19
      */
     private Throwable getThrowableCause(Throwable throwable) {

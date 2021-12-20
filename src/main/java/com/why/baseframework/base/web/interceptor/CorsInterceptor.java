@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @Author chenglin.wu
+ * @Author W
  * @Description:
  * @Title: CorsInterceptor
- * @ProjectName base_framework
+ * @ProjectName WHY-Core
  * @Date 2021/4/16
  * @Company  WHY-Group
  */

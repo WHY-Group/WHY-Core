@@ -22,21 +22,22 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * @Author chenglin.wu
+ * @Author W
  * @Description:
  * @Title: RedisConfig
- * @ProjectName base_framework
+ * @ProjectName WHY-Core
  * @Date 2021/4/16 10:33
  * @Company  WHY-Group
  */
 @Configuration
+@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 public class RedisConfig {
     /**
      * 配置简单的redisTemplate序列化器
      *
      * @param redisConnectionFactory redis的连接工厂对象
      * @return RedisTemplate<String, Object> redisTemplate
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     @Bean("redisTemplate")
@@ -50,7 +51,7 @@ public class RedisConfig {
      *
      * @param connectionFactory redis的连接工厂对象
      * @return RedisTemplate<Object, Object>
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/25
      */
     @Bean("objTemplate")
@@ -65,7 +66,7 @@ public class RedisConfig {
      * @param connectionFactory redis连接工厂
      * @param template          redisTemplate对象
      * @return void
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/25
      */
     private <T> RedisTemplate<T, Object> getRedisTemplate(RedisConnectionFactory connectionFactory, RedisTemplate<T, Object> template) {
@@ -89,7 +90,7 @@ public class RedisConfig {
      *
      * @param template redisTemplate对象
      * @return CacheManager 缓存管理器
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     @Bean

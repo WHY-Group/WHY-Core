@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.File;
 
 /**
- * @Author bin.hu
+ * @Author H
  * @Description: 文件类型工具类
  * @Title: FileTypeUtils
  * @ProjectName WHY-core

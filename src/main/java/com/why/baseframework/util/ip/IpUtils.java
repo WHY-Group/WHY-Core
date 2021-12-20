@@ -19,7 +19,7 @@ public class IpUtils {
      *
      * @param request httpServletRequest
      * @return String
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/5/6
      */
     public static String getIpAddr(HttpServletRequest request) {

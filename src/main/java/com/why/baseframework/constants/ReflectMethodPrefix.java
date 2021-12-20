@@ -1,10 +1,10 @@
 package com.why.baseframework.constants;
 
 /**
- * @Author chenglin.wu
+ * @Author W
  * @Description:
  * @Title: ReflectMethodPrefix
- * @ProjectName base_framework
+ * @ProjectName WHY-Core
  * @Date 2021/4/16 13:18
  * @Company  WHY-Group
  */

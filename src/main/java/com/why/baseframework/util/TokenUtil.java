@@ -32,7 +32,7 @@ public class TokenUtil {
      *
      * @param request 请求对象
      * @return String
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/20
      */
     public static String getTokenFromServlet(HttpServletRequest request) {
@@ -47,7 +47,7 @@ public class TokenUtil {
      *
      * @param request 请求对象
      * @return String
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/20
      */
     public static String getRequestSource(HttpServletRequest request) {

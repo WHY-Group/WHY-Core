@@ -3,7 +3,7 @@ package com.why.baseframework.configuration;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 /**
- * @author bin.hu
+ * @author H
  * @description: 多数据源配置类
  * @title: MoreDataSourceConfig
  * @projectName baseframework

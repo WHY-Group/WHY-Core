@@ -37,7 +37,7 @@ import java.util.List;
  * @Company WHY-Group
  **/
 @Slf4j
-@SuppressWarnings("rawtypes")
+@SuppressWarnings({"rawtypes", "SpringJavaAutowiredMembersInspection"})
 public class BaseController<S extends BaseService<M, T>, M extends BaseCustomMapper<T>, T extends BaseEntity> {
 
     @Autowired
@@ -119,7 +119,7 @@ public class BaseController<S extends BaseService<M, T>, M extends BaseCustomMap
      * 获取当前请求的httpServlet对象
      *
      * @return: HttpServletRequest
-     * @Author: bin.hu
+     * @Author: H
      * @Date: 2021/4/16
      */
     public HttpServletRequest getHttpServletRequest() {
@@ -130,7 +130,7 @@ public class BaseController<S extends BaseService<M, T>, M extends BaseCustomMap
      * 获取redisTemplate的对象
      *
      * @return: RedisTemplate
-     * @Author: bin.hu
+     * @Author: H
      * @Date: 2021/4/16
      */
     public RedisTemplate<String, Object> getRedisTemplate() {
@@ -141,7 +141,7 @@ public class BaseController<S extends BaseService<M, T>, M extends BaseCustomMap
      * 获取业务处理层的实例
      *
      * @return S 业务处理层的类
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     public S getBaseService() {
@@ -152,7 +152,7 @@ public class BaseController<S extends BaseService<M, T>, M extends BaseCustomMap
      * 获取国际化语言的实例
      *
      * @return BaseMessage 国际化语言的实例类
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     public BaseMessage getBaseMessage() {
@@ -163,7 +163,7 @@ public class BaseController<S extends BaseService<M, T>, M extends BaseCustomMap
      * 获取redisLoginUserManager
      *
      * @return RedisLoginUserManager 登录对象操作类
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     public RedisLoginUserManager getRedisManager() {
@@ -174,7 +174,7 @@ public class BaseController<S extends BaseService<M, T>, M extends BaseCustomMap
      * 获取header中的token
      *
      * @return String 请求中的token
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     public String getToken() {

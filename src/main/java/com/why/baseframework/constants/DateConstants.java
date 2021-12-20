@@ -1,10 +1,10 @@
 package com.why.baseframework.constants;
 
 /**
- * @Author chenglin.wu
+ * @Author W
  * @Description:
  * @Title: DateConstants
- * @ProjectName base_framework
+ * @ProjectName WHY-Core
  * @Date 2021/4/19
  * @Company  WHY-Group
  */

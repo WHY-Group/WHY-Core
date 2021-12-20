@@ -10,6 +10,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -22,6 +23,7 @@ import java.util.concurrent.TimeUnit;
  **/
 @Component
 @Slf4j
+@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 public class RedisLoginUserManager {
 
     @Autowired
@@ -33,7 +35,7 @@ public class RedisLoginUserManager {
     /**
      * 添加用户到redis中
      *
-     * @param loginUser
+     * @param loginUser loginUser
      * @Author Y
      * @Description
      * @Date 2021/4/16 16:17
@@ -60,7 +62,7 @@ public class RedisLoginUserManager {
     /**
      * 获取redis中的LoginUser
      *
-     * @param token
+     * @param token token
      * @Return {@link LoginUser }
      * @Author Y
      * @Date 2021/4/16 16:17
@@ -81,7 +83,7 @@ public class RedisLoginUserManager {
     /**
      * 删除redis中的user
      *
-     * @param token
+     * @param token token
      * @Author Y
      * @Date 2021/4/16 16:17
      **/
@@ -96,7 +98,7 @@ public class RedisLoginUserManager {
     /**
      * 更新redis中的LoginUser
      *
-     * @param loginUser
+     * @param loginUser loginUser
      * @Author Y
      * @Date 2021/4/16 16:18
      **/
@@ -116,7 +118,7 @@ public class RedisLoginUserManager {
     /**
      * 通过userId获取redis中的LoginUser
      *
-     * @param userId
+     * @param userId userId
      * @Return {@link LoginUser }
      * @Author Y
      * @Date 2021/4/16 16:18
@@ -136,7 +138,7 @@ public class RedisLoginUserManager {
     /**
      * 从redis获取userId
      *
-     * @param token
+     * @param token token
      * @Return {@link String }
      * @Author Y
      * @Date 2021/4/16 14:23
@@ -154,8 +156,9 @@ public class RedisLoginUserManager {
         return null;
     }
 
+    @SuppressWarnings("unused")
     public void deleteLoginUserById(String... redisId){
-        log.info("RedisLoginUserManager deleteLoginUserById id:{}", redisId);
+        log.info("RedisLoginUserManager deleteLoginUserById id:{}", Arrays.toString(redisId));
         if (ObjectUtils.anyNull(redisTemplate)){
             log.error("RedisLoginUserManager deleteLoginUserById redisTemplate is null");
         }else {

@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 /**
- * @Author bin.hu
+ * @Author H
  * @Description: 文件处理工具类
  * @Title: FileUtil
  * @ProjectName WHY-core
@@ -19,7 +19,7 @@ import java.util.Arrays;
  * @Company  WHY-Group
  */
 public class FileUtil extends FileUtils {
-    public static String FILENAME_PATTERN = "[a-zA-Z0-9_\\-\\|\\.\\u4e00-\\u9fa5]+";
+    public static String FILENAME_PATTERN = "[a-zA-Z0-9_\\-|.\\u4e00-\\u9fa5]+";
 
     /**
      * 输出指定文件的byte数组

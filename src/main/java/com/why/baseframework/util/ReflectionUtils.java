@@ -16,7 +16,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * @Author chenglin.wu
+ * @Author W
  * @Description:
  * @Title: ReflectionUtils
  * @Date 2021/4/16 10:57
@@ -60,7 +60,7 @@ public final class ReflectionUtils {
      *
      * @param clazz 泛型的class对象
      * @return Class 返回实际的Class对象
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     @SuppressWarnings("rawtypes")
@@ -73,7 +73,7 @@ public final class ReflectionUtils {
      *
      * @param targetMethods 反射拿到的所有的方法
      * @return HashMap<String, Method> 返回set方法的映射表
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     public static HashMap<String, Method> getMethodMap4Set(Method[] targetMethods) {
@@ -85,7 +85,7 @@ public final class ReflectionUtils {
      *
      * @param entity 实体类的数据
      * @return {@link QueryWrapper<T>}
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/27
      */
     @Deprecated
@@ -136,7 +136,7 @@ public final class ReflectionUtils {
      * @param entity 守实体类
      * @return QueryWrapper<T>
      * @throws NoSuchMethodException,InvocationTargetException,IllegalAccessException
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/5/17
      */
     public static <T extends BaseEntity> QueryWrapper<T> createPageWrapper2Field(T entity, QueryWrapper<T> wrapper) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
@@ -207,7 +207,7 @@ public final class ReflectionUtils {
      * @param wrapper queryWrapper
      * @return void
      * @throws Exception
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/5/17
      */
     private static <T extends BaseEntity> void getExtendField(T entity, Class<?> aClass, QueryWrapper<T> wrapper) throws Exception {
@@ -236,7 +236,7 @@ public final class ReflectionUtils {
      * @param field     列名
      * @param fieldType 属性
      * @return String
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/5/17
      */
     private static String getTableFieldAnnotationValue(String field, Field fieldType) {
@@ -254,7 +254,7 @@ public final class ReflectionUtils {
      *
      * @param field 属性
      * @return String
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/5/17
      */
     private static String getTableFieldAnnotationValue(Field field) {
@@ -271,7 +271,7 @@ public final class ReflectionUtils {
      *
      * @param field 属性
      * @return boolean false 为忽略字段 true 则不忽略
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/5/17
      */
     private static boolean judgementIgnoreField(Field field) {
@@ -329,7 +329,7 @@ public final class ReflectionUtils {
      * @param invoke    调用get方法获取出来的值
      * @param field     数据库字段名
      * @return void
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/5/17
      */
     private static <T extends BaseEntity> void getWrapper(QueryWrapper<T> wrapper, String fieldName, Object invoke, String field) {
@@ -349,7 +349,7 @@ public final class ReflectionUtils {
      * @param method  get 方法
      * @param wrapper new 出来的wrapper
      * @return void
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/5/17
      */
     private static <T extends BaseEntity> void getWrapper(T entity, Field field, Method method, QueryWrapper<T> wrapper) throws IllegalAccessException, InvocationTargetException {
@@ -369,7 +369,7 @@ public final class ReflectionUtils {
     /**
      * @param targetMethods 所有的方法数组
      * @return HashMap<String, Method>
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     private static HashMap<String, Method> getSetMethodMapping(Method[] targetMethods) {
@@ -392,7 +392,7 @@ public final class ReflectionUtils {
      * @param clazz 泛型的class对象
      * @param index
      * @return Class
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     @SuppressWarnings("rawtypes")
@@ -422,7 +422,7 @@ public final class ReflectionUtils {
      *
      * @param entity 实体类
      * @return DeclaredAndSuperClass
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/5/17
      */
     private static <T> DeclaredAndSuperClass getDeclaredAndSuperClass(T entity) {
@@ -437,7 +437,7 @@ public final class ReflectionUtils {
      *
      * @param clazz 当前entity的class对象
      * @return List<Method>
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/27
      */
     private static List<Method> getAllGetter(Class<?> clazz) {
@@ -452,7 +452,7 @@ public final class ReflectionUtils {
      *
      * @param fieldStr 当前的数据库字段名
      * @return String
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/27
      */
     private static String getDbField(String fieldStr) {
@@ -491,7 +491,7 @@ public final class ReflectionUtils {
          * 获取本类和父类所有的属性
          *
          * @return List<Field>
-         * @author chenglin.wu
+         * @author W
          * @date: 2021/5/17
          */
         private List<Field> getAllFields() {
@@ -507,7 +507,7 @@ public final class ReflectionUtils {
          * 获取本类的所有属性
          *
          * @return List<Field>
-         * @author chenglin.wu
+         * @author W
          * @date: 2021/5/17
          */
         private List<Field> getDeclaredFields() {
@@ -519,7 +519,7 @@ public final class ReflectionUtils {
          * 获取父类的所有属性
          *
          * @return List<Field>
-         * @author chenglin.wu
+         * @author W
          * @date: 2021/5/17
          */
         private List<Field> getSuperFields() {

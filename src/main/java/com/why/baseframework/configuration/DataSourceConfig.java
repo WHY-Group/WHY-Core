@@ -13,17 +13,18 @@ import org.springframework.core.env.Environment;
 import com.alibaba.druid.pool.DruidDataSource;
 
 /**
- * @author bin.hu
+ * @author H
  * @description: 配置多数据源
  * @title: DataSourceConfig
- * @projectName baseframework
+ * @projectName WHY-Core
  * @date 2021年4月21日
  * @company  WHY-Group
  */
 @Configuration
 public class DataSourceConfig {
 
-	@Autowired
+	@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
+    @Autowired
 	private Environment env;
 
 	public DataSource dataSource1() {

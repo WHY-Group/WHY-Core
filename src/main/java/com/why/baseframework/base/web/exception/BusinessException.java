@@ -1,10 +1,10 @@
 package com.why.baseframework.base.web.exception;
 
 /**
- * @Author chenglin.wu
+ * @Author W
  * @Description:
  * @Title: BusinessExceprion
- * @ProjectName base_framework
+ * @ProjectName WHY-Core
  * @Date 2021/4/16
  * @Company  WHY-Group
  */

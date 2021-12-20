@@ -12,10 +12,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author chenglin.wu
+ * @author W
  * @description:
  * @title: PageExtraI
- * @projectName tianrui
+ * @projectName WHY-Core
  * @date 2021年05月23日
  * @company WHY-Group
  */

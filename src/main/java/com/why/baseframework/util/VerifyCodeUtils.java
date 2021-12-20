@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * @Author bin.hu
+ * @Author H
  * @Description: 验证码工具类
  * @Title: VerifyCodeUtils
  * @ProjectName WHY-core

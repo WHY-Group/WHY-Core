@@ -25,9 +25,12 @@ public class RedisTransEncryptManager {
     /**
      * redis操作
      */
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
+    private final StringRedisTemplate stringRedisTemplate;
 
+    @Autowired
+    public RedisTransEncryptManager(StringRedisTemplate stringRedisTemplate) {
+        this.stringRedisTemplate = stringRedisTemplate;
+    }
 
     /**
      * 将传输加密存到redis中
@@ -53,6 +56,7 @@ public class RedisTransEncryptManager {
      * @author W
      * @date 2021/5/16
      */
+    @SuppressWarnings("unused")
     public void setTransEncryptKey(String transToken, String encryptKey, int minute) {
         stringRedisTemplate.opsForValue().set(transToken, encryptKey, minute,
                 TimeUnit.MINUTES);
@@ -66,6 +70,7 @@ public class RedisTransEncryptManager {
      * @author W
      * @date 2021/5/16
      */
+    @SuppressWarnings("unused")
     public String getAndDelTransEncryptToken(String transToken) {
         String redisEncryptKey = stringRedisTemplate.opsForValue().get(transToken);
         if (StringUtils.isNotBlank(redisEncryptKey)) {
@@ -83,6 +88,7 @@ public class RedisTransEncryptManager {
      * @author W
      * @date 2021-05-29
      */
+    @SuppressWarnings("unused")
     public String getAndDelTransTokenAndDecoder(String transToken, String encryptStr) throws Exception {
         if (StringUtils.isBlank(encryptStr)) {
             throw new BusinessException(ErrCodeEnum.DATA_CHECK.getCode(), "请传入加密字符串");

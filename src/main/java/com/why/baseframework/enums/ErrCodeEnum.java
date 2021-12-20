@@ -1,7 +1,7 @@
 package com.why.baseframework.enums;
 
 /**
- * @Author chenglin.wu
+ * @Author W
  * @Description:
  * @Title: ReflectionUtils
  * @Date 2021/4/22
@@ -57,7 +57,7 @@ public enum ErrCodeEnum {
     /**
      * @param code 错误码
      * @return null
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/22
      */
     ErrCodeEnum(int code) {
@@ -68,7 +68,7 @@ public enum ErrCodeEnum {
      * 获取错误码
      *
      * @return int
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/22
      */
     public int getCode() {

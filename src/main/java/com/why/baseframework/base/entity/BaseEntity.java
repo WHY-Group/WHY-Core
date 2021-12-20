@@ -16,10 +16,10 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 /**
- * @Author chenglin.wu
+ * @Author W
  * @Description:
  * @Title: BaseEntity
- * @ProjectName base_framework
+ * @ProjectName WHY-Core
  * @Date 2021/4/16 10:20
  * @Company  WHY-Group
  */
@@ -49,7 +49,7 @@ public abstract class BaseEntity<D extends BaseDTO<?>> implements Serializable {
      * @param src    需要转换的对象
      * @param target 转换成功的对象
      * @return Object
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     public static Object populate(Object src, Object target) {
@@ -92,7 +92,7 @@ public abstract class BaseEntity<D extends BaseDTO<?>> implements Serializable {
      * @param src    被拷贝对象
      * @param target 保存对象
      * @return Object 拷贝完成后的对象
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     @SuppressWarnings({"rawtypes", "unchecked"})
@@ -157,7 +157,7 @@ public abstract class BaseEntity<D extends BaseDTO<?>> implements Serializable {
      *
      * @param entities 所有的实体类集合
      * @return List<D> 泛型对应的DTO类型对象集合 List<D>
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     public List<D> entities2Dtos(List<?> entities) {
@@ -188,7 +188,7 @@ public abstract class BaseEntity<D extends BaseDTO<?>> implements Serializable {
      *
      * @param entities 所有的实体类集合
      * @return List<D> 泛型对应的DTO类型对象集合 List<D>
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     public List<D> entities2DtosDeep(List<?> entities) {
@@ -216,7 +216,7 @@ public abstract class BaseEntity<D extends BaseDTO<?>> implements Serializable {
      * 将entity转换成DTO
      *
      * @return D DTO的实例
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     public D entity2Dto() {
@@ -237,7 +237,7 @@ public abstract class BaseEntity<D extends BaseDTO<?>> implements Serializable {
      * 将实体类转换成dto类，并可以拷贝复杂属性
      *
      * @return D DTO的实例
-     * @author chenglin.wu
+     * @author W
      * @date: 2021/4/16
      */
     public D entity2DtoDeep() {
