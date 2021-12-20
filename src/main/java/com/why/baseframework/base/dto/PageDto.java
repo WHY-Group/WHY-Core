@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -18,7 +19,8 @@ import java.util.List;
  */
 @Data
 @ApiModel("分页查询的查询DTO泛型为数据库的entity")
-public class PageDto<T> {
+public class PageDto<T> implements Serializable {
+    private static final long serialVersionUID = 2273554901188209128L;
     /**
      * 系统自带的分页对象
      */

@@ -1,5 +1,8 @@
 package com.why.baseframework.base.web.response;
 
+/**
+ * @author W
+ */
 public final class ResponseUtils {
 	private ResponseUtils() {
 	}

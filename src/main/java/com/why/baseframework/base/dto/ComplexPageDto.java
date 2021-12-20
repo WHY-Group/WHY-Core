@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * @author W
@@ -16,7 +17,8 @@ import javax.validation.constraints.NotNull;
  */
 @Data
 @ApiModel("复杂查询的分页dto")
-public class ComplexPageDto<T, D> {
+public class ComplexPageDto<T, D> implements Serializable {
+    private static final long serialVersionUID = -6126478070662959805L;
     @ApiModelProperty(value = "分页的dto")
     @NotNull(message = "分页查询的dto不能为空")
     private PageDto<T> pageDto;

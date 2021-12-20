@@ -1,22 +1,20 @@
 package com.why.baseframework.redis;
 
-import java.util.concurrent.TimeUnit;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.TimeUnit;
+@Slf4j
 @Component
 public class RedisValidateCodeManager {
+	// 过期秒数
+	private final static long REDIS_VALIDATE_CODE_TIMEOUT = 60 * 5;
 
-	private final static long Redis_Validate_Code_Timeout = 60 * 5; // 过期秒数
-
-	private static Logger logger = LoggerFactory.getLogger(RedisValidateCodeManager.class);
-
+	// redis
 	@Autowired
-	private StringRedisTemplate stringRedisTemplate;// redis
+	private StringRedisTemplate stringRedisTemplate;
 
 	/**
 	 * @Title isEmpty
@@ -29,7 +27,7 @@ public class RedisValidateCodeManager {
 	 * @author 胡斌
 	 * @date: 2020年4月23日
 	 */
-	public boolean isEmpty(String key, String value, Long time) {
+	public Boolean isEmpty(String key, String value, Long time) {
 		if (time != null) {
 			return this.stringRedisTemplate.opsForValue().setIfAbsent(key, value, time, TimeUnit.SECONDS);
 		}
@@ -37,16 +35,16 @@ public class RedisValidateCodeManager {
 	}
 
 	public void setValidateCode(String token, String code) {
-		stringRedisTemplate.opsForValue().set(token, code, Redis_Validate_Code_Timeout, TimeUnit.SECONDS);
+		stringRedisTemplate.opsForValue().set(token, code, REDIS_VALIDATE_CODE_TIMEOUT, TimeUnit.SECONDS);
 	}
 
 	public void refreshValidateCode(String token, String code) {
 
-		logger.info("refreshValidateCode " + token + " " + code);
+		log.info("refreshValidateCode " + token + " " + code);
 
-		stringRedisTemplate.opsForValue().set(token, code, Redis_Validate_Code_Timeout, TimeUnit.SECONDS);
+		stringRedisTemplate.opsForValue().set(token, code, REDIS_VALIDATE_CODE_TIMEOUT, TimeUnit.SECONDS);
 
-		logger.info("refreshValidateCode " + token + " " + code);
+		log.info("refreshValidateCode " + token + " " + code);
 
 	}
 

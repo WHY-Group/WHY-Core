@@ -12,6 +12,7 @@ import org.apache.commons.lang3.ObjectUtils;
  * @company WHY-Group
  */
 public class DefaultOrderItem extends OrderItem {
+    private static final long serialVersionUID = -4309799598861864455L;
     private volatile static DefaultOrderItem defaultOrderItem;
     private DefaultOrderItem(String column, boolean asc) {
         super(column, asc);

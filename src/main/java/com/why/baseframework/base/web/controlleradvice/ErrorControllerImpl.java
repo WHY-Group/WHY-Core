@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 public class ErrorControllerImpl implements ErrorController {
-    @Override
     public String getErrorPath() {
         return "/error";
     }

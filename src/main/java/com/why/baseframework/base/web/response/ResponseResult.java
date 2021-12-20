@@ -2,9 +2,14 @@
 package com.why.baseframework.base.web.response;
 
 
+import java.io.Serializable;
 
-public class ResponseResult<T> {
+/**
+ * @author W
+ */
+public class ResponseResult<T> implements Serializable {
 
+	private static final long serialVersionUID = 2160920447058356884L;
 	/**
 	 * 返回代码
 	 */
