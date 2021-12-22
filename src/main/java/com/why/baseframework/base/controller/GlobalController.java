@@ -23,7 +23,7 @@ import java.util.Map;
  * @author W
  * @description:
  * @title: GlobalController
- * @projectName tianrui
+ * @projectName WHY-Core
  * @date 2021年05月16日
  * @company WHY-Group
  */
