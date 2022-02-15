@@ -1,6 +1,5 @@
 package com.why.baseframework.base.controller;
 
-import com.google.code.kaptcha.Producer;
 import com.why.baseframework.base.web.response.ResponseResult;
 import com.why.baseframework.base.web.response.ResponseUtils;
 import com.why.baseframework.constants.IntConstants;
@@ -9,13 +8,11 @@ import com.why.baseframework.util.TokenUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.Base64Utils;
 import org.springframework.util.FastByteArrayOutputStream;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -36,8 +33,6 @@ import java.util.Map;
 public class GlobalController {
     @Autowired
     private RedisTransEncryptManager redisTransEncryptManager;
-    @Resource(name = "captchaProducer")
-    private Producer captchaProducer;
 
     /**
      * 登录之前获取加密秘钥对密码进行加密处理
@@ -67,22 +62,22 @@ public class GlobalController {
      * @author W
      * @date 2021/5/16
      */
-    @GetMapping("/getVerificationCode")
-    public ResponseResult<Map<String, String>> getVerificationCode() throws IOException {
-        Map<String, String> map = new HashMap<>(IntConstants.INT_2);
-
-        String text = captchaProducer.createText();
-        log.info("验证码图片文字：{}",text);
-        BufferedImage image = captchaProducer.createImage(text);
-        FastByteArrayOutputStream outputStream = this.image2OutputStream(image);
-
-        String transToken = TokenUtil.createToken();
-        this.redisTransEncryptManager.setTransEncryptKey(transToken, text, IntConstants.INT_5);
-        map.put("image", Base64Utils.encodeToString(outputStream.toByteArray()));
-        map.put("transToken", transToken);
-
-        return ResponseUtils.success(map);
-    }
+//    @GetMapping("/getVerificationCode")
+//    public ResponseResult<Map<String, String>> getVerificationCode() throws IOException {
+//        Map<String, String> map = new HashMap<>(IntConstants.INT_2);
+//
+//        String text = captchaProducer.createText();
+//        log.info("验证码图片文字：{}",text);
+//        BufferedImage image = captchaProducer.createImage(text);
+//        FastByteArrayOutputStream outputStream = this.image2OutputStream(image);
+//
+//        String transToken = TokenUtil.createToken();
+//        this.redisTransEncryptManager.setTransEncryptKey(transToken, text, IntConstants.INT_5);
+//        map.put("image", Base64Utils.encodeToString(outputStream.toByteArray()));
+//        map.put("transToken", transToken);
+//
+//        return ResponseUtils.success(map);
+//    }
 
     /**
      * 将图片转换为输出流
